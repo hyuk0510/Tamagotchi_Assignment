@@ -19,6 +19,7 @@
 		D87337792A7CD4BD00BE6F6A /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */; };
 		D873377B2A7CD5A600BE6F6A /* TamagotchiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */; };
 		D873377D2A7CE6AF00BE6F6A /* TamagotchiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D873377C2A7CE6AF00BE6F6A /* TamagotchiDetailViewController.swift */; };
+		D873377F2A7D135500BE6F6A /* TamagotchiMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D873377E2A7D135500BE6F6A /* TamagotchiMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamagotchi.swift; sourceTree = "<group>"; };
 		D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiInfo.swift; sourceTree = "<group>"; };
 		D873377C2A7CE6AF00BE6F6A /* TamagotchiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiDetailViewController.swift; sourceTree = "<group>"; };
+		D873377E2A7D135500BE6F6A /* TamagotchiMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiMainViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		D873375D2A7CA0DA00BE6F6A /* Tamagotchi_Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				D873377E2A7D135500BE6F6A /* TamagotchiMainViewController.swift */,
 				D87337742A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift */,
 				D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */,
 				D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87337732A7CCD8000BE6F6A /* SelectViewController.swift in Sources */,
+				D873377F2A7D135500BE6F6A /* TamagotchiMainViewController.swift in Sources */,
 				D87337762A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift in Sources */,
 				D873377D2A7CE6AF00BE6F6A /* TamagotchiDetailViewController.swift in Sources */,
 				D87337632A7CA0DA00BE6F6A /* ViewController.swift in Sources */,

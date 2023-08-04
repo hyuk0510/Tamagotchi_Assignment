@@ -8,6 +8,6 @@
 import Foundation
 
 struct TamagotchiInfo {
-    
-    let tamagotchi: [Tamagotchi] = [Tamagotchi(name: "따끔따끔 다마고치", rice: 0, water: 0, introduce: ""), Tamagotchi(name: "방실방실 다마고치", rice: 0, water: 0, introduce: ""), Tamagotchi(name: "반짝반짝 다마고치", rice: 0, water: 0, introduce: ""), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다.")]
+        
+    let tamagotchi: [Tamagotchi] = [Tamagotchi(name: "따끔따끔 다마고치", rice: 0, water: 0, introduce: "따끔따끔"), Tamagotchi(name: "방실방실 다마고치", rice: 0, water: 0, introduce: "방실방실"), Tamagotchi(name: "반짝반짝 다마고치", rice: 0, water: 0, introduce: "반짝반짝"), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다.")]
 }

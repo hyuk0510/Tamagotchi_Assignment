@@ -53,10 +53,13 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = storyboard?.instantiateViewController(identifier: TamagotchiDetailViewController.identifier) as! TamagotchiDetailViewController
-        
         let row = indexPath.row
-        
+        let nav = UINavigationController(rootViewController: vc)
+        vc.index = row
         vc.getData(data: TamagotchiInfo().tamagotchi[row])
+        
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
     }
     
     func configureTamagotchiCollectionViewLayout() {

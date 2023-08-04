@@ -34,7 +34,6 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
     }
     
     func configureTamagotchiSelectCollectionViewCell() {
-        //self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
         let row = tamagotchiSelectImageView.tag
         tamagotchiNameLabel.text = TamagotchiInfo().tamagotchi[row].name
         if TamagotchiInfo().tamagotchi[row].name == "준비중이에요" {
