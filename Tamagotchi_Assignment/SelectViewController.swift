@@ -57,6 +57,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let nav = UINavigationController(rootViewController: vc)
         vc.index = row
         vc.getData(data: TamagotchiInfo().tamagotchi[row])
+        UserDefaults.standard.data(forKey: "Tamagotchi\(row)")
         
         nav.modalPresentationStyle = .overFullScreen
         present(nav, animated: true)

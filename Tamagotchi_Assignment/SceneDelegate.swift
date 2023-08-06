@@ -19,7 +19,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         UserDefaults.standard.set(false, forKey: "isSelected")
-        let isLaunched = UserDefaults.standard.bool(forKey: "isSelected")
+        UserDefaults.standard.set("대장", forKey: "User")
+        UserDefaults.standard.set(false, forKey: "isChanged")
+        
+        let isSelected = UserDefaults.standard.bool(forKey: "isSelected")
+        
+        if isSelected == false {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: SelectViewController.identifier) as! SelectViewController
+            let nav = UINavigationController(rootViewController: vc)
+            
+            window?.rootViewController = nav
+        } else {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: TamagotchiMainViewController.identifier) as! TamagotchiMainViewController
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+        }
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

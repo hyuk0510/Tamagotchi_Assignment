@@ -35,6 +35,7 @@ class TamagotchiDetailViewController: UIViewController {
         designIntroduceTextView()
         designCancelButton()
         designStartButton()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +49,20 @@ class TamagotchiDetailViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
-        //let vc
+        UserDefaults.standard.set(true, forKey: "isSelected")
+        TamagotchiInfo.selectedTamagotchi = TamagotchiInfo().tamagotchi[index]
+        
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: TamagotchiMainViewController.identifier) as! TamagotchiMainViewController
+        let nav = UINavigationController(rootViewController: vc)
+        
+        vc.index = index
+        
+        sceneDelegate?.window?.rootViewController = nav
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
 }
 
@@ -103,7 +117,13 @@ extension TamagotchiDetailViewController {
     }
     
     func designStartButton() {
-        startButton.setTitle("시작하기", for: .normal)
+        var buttonTitle = ""
+        if UserDefaults.standard.bool(forKey: "isChanged") == false {
+            buttonTitle = "시작하기"
+        } else {
+            buttonTitle = "변경하기"
+        }
+        startButton.setTitle(buttonTitle, for: .normal)
         startButton.titleLabel?.font = .boldSystemFont(ofSize: 13)
         startButton.backgroundColor = .clear
     }

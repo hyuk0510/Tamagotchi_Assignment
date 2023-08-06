@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UILabel.appearance().textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
         UITextView.appearance().textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
         UIButton.appearance().tintColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        UIBarButtonItem.appearance().tintColor = .black
         
         return true
     }
