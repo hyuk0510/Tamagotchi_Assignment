@@ -35,8 +35,8 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
     
     func configureTamagotchiSelectCollectionViewCell() {
         let row = tamagotchiSelectImageView.tag
-        tamagotchiNameLabel.text = TamagotchiInfo().tamagotchi[row].name
-        if TamagotchiInfo().tamagotchi[row].name == "준비중이에요" {
+        tamagotchiNameLabel.text = TamagotchiInfo.tamagotchi[row].name
+        if TamagotchiInfo.tamagotchi[row].name == "준비중이에요" {
             tamagotchiSelectImageView.image = UIImage(named: "noImage")
         } else {
             tamagotchiSelectImageView.image = UIImage(named: "\(row + 1)-6")

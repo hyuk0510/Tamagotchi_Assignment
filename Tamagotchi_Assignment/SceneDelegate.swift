@@ -18,10 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        UserDefaults.standard.set(false, forKey: "isSelected")
-        UserDefaults.standard.set("대장", forKey: "User")
-        UserDefaults.standard.set(false, forKey: "isChanged")
-        
         let isSelected = UserDefaults.standard.bool(forKey: "isSelected")
         
         if isSelected == false {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tamagotchi {
+struct Tamagotchi: Codable {
     var name: String
     var rice: Int
     var water: Int

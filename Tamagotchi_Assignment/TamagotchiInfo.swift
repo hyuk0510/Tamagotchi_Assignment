@@ -9,7 +9,8 @@ import Foundation
 
 struct TamagotchiInfo {
         
-    static var selectedTamagotchi: Tamagotchi?
+    static var index = 0
     
-    let tamagotchi: [Tamagotchi] = [Tamagotchi(name: "따끔따끔 다마고치", rice: 0, water: 0, introduce: "따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔따끔"), Tamagotchi(name: "방실방실 다마고치", rice: 0, water: 0, introduce: "방실방실방실방실방실방실방실방실방실방실방실방실"), Tamagotchi(name: "반짝반짝 다마고치", rice: 0, water: 0, introduce: "반짝반짝반짝반짝반짝반짝반짝반짝반짝반짝반짝반짝"), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."), Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다.")]
+    static var tamagotchi: [Tamagotchi] = [Tamagotchi(name: "따끔따끔 다마고치", rice: 0, water: 0, introduce: "따끔따끔 다마고치입니다. 배고프고 목말라요.. 키워주세요"), Tamagotchi(name: "방실방실 다마고치", rice: 0, water: 0, introduce: "방실방실 다마고치입니다. 배고프고 목말라요.. 키워주세요"), Tamagotchi(name: "반짝반짝 다마고치", rice: 0, water: 0, introduce: "반짝반짝 다마고치입니다. 배고프고 목말라요.. 키워주세요")]
 }
+

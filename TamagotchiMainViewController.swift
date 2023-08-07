@@ -10,8 +10,7 @@ import UIKit
 class TamagotchiMainViewController: UIViewController {
 
     static let identifier = "TamagotchiMainViewController"
-    var tamagotchi = TamagotchiInfo.selectedTamagotchi
-    var index = 0
+    var tamagotchi = TamagotchiInfo.tamagotchi[TamagotchiInfo.index]
     
     @IBOutlet var barButtonItem: UIBarButtonItem!
     
@@ -32,6 +31,8 @@ class TamagotchiMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        saveData()
+        setBackgroundColor()
         designBarButtonItem()
         setTamagotchiImageView()
         
@@ -63,7 +64,7 @@ class TamagotchiMainViewController: UIViewController {
         let riceInput = Int(text) ?? 1
         
         if riceInput < 100 {
-            tamagotchi!.rice += riceInput
+            tamagotchi.rice += riceInput
         } else {
             let alert = UIAlertController(title: "한 번에 100개 이상 못먹어요!", message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction(title: "확인", style: .default)
@@ -73,6 +74,7 @@ class TamagotchiMainViewController: UIViewController {
             present(alert, animated: true)
         }
 
+        saveData()
         setTamagotchiImageView()
         setTamagotchiInfoLabel()
         setTamagotchiWordLabel()
@@ -88,7 +90,7 @@ class TamagotchiMainViewController: UIViewController {
         let waterInput = Int(text) ?? 1
         
         if waterInput < 50 {
-            tamagotchi!.water += waterInput
+            tamagotchi.water += waterInput
         } else {
             let alert = UIAlertController(title: "한 번에 50개 이상 못마셔요!", message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction(title: "확인", style: .default)
@@ -97,6 +99,8 @@ class TamagotchiMainViewController: UIViewController {
             
             present(alert, animated: true)
         }
+        
+        saveData()
         setTamagotchiImageView()
         setTamagotchiInfoLabel()
         setTamagotchiWordLabel()
@@ -113,10 +117,17 @@ class TamagotchiMainViewController: UIViewController {
 }
 
 extension TamagotchiMainViewController {
+    func getData(data: Tamagotchi) {
+        tamagotchi = data
+    }
+    
+    func setBackgroundColor() {
+        self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
+    }
+    
     func setTamagotchiImageView() {
-        guard let level = tamagotchi?.level else {
-            return
-        }
+        let level = tamagotchi.level
+        let index = TamagotchiInfo.index
         
         if level == 0 {
             tamagotchiImageView.image = UIImage(named: "\(index + 1)-\(level + 1)")
@@ -128,7 +139,7 @@ extension TamagotchiMainViewController {
     }
     
     func setTamagotchiInfoLabel() {
-        tamagotchiInfoLabel.text = "LV\(tamagotchi?.level ?? 0) • 밥알 \(tamagotchi?.rice ?? 0)개 • 물방울 \(tamagotchi?.water ?? 0)개"
+        tamagotchiInfoLabel.text = "LV\(tamagotchi.level) • 밥알 \(tamagotchi.rice)개 • 물방울 \(tamagotchi.water)개"
     }
     
     func designBarButtonItem() {
@@ -138,6 +149,7 @@ extension TamagotchiMainViewController {
     }
     
     func designBackImageView() {
+        backImageView.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
         backImageView.image = UIImage(named: "bubble")
     }
     
@@ -155,7 +167,7 @@ extension TamagotchiMainViewController {
     func designTamagotchiNameLabel() {
         tamagotchiNameLabel.textAlignment = .center
         tamagotchiNameLabel.font = .boldSystemFont(ofSize: 15)
-        tamagotchiNameLabel.text = tamagotchi?.name
+        tamagotchiNameLabel.text = tamagotchi.name
         tamagotchiNameLabel.layer.cornerRadius = 5
         tamagotchiNameLabel.layer.borderWidth = 0.5
     }
@@ -168,6 +180,7 @@ extension TamagotchiMainViewController {
     
     func designRiceTextField() {
         riceTextField.placeholder = "밥주세용"
+        riceTextField.textAlignment = .center
         riceTextField.clearButtonMode = .whileEditing
         riceTextField.clearsOnBeginEditing = true
     }
@@ -183,6 +196,7 @@ extension TamagotchiMainViewController {
     
     func designWaterTextField() {
         waterTextField.placeholder = "물주세용"
+        waterTextField.textAlignment = .center
         waterTextField.clearButtonMode = .whileEditing
         waterTextField.clearsOnBeginEditing = true
     }
@@ -194,5 +208,13 @@ extension TamagotchiMainViewController {
         waterButton.setTitle("물먹기", for: .normal)
         waterButton.layer.borderWidth = 0.5
         waterButton.layer.cornerRadius = 15
+    }
+    
+    func saveData() {
+        let encoder = JSONEncoder()
+
+        if let encoded = try? encoder.encode(tamagotchi) {
+            UserDefaults.standard.setValue(encoded, forKey: "UserTamagotchi\(TamagotchiInfo.index)")
+        }
     }
 }

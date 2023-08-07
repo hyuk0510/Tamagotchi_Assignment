@@ -16,6 +16,10 @@ class SelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        for _ in 1...20 {
+            TamagotchiInfo.tamagotchi.append(Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."))
+        }
+        
         tamagotchiSelectCollectionView.delegate = self
         tamagotchiSelectCollectionView.dataSource = self
         
@@ -36,7 +40,7 @@ class SelectViewController: UIViewController {
 
 extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TamagotchiInfo().tamagotchi.count
+        return TamagotchiInfo.tamagotchi.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -55,12 +59,24 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let vc = storyboard?.instantiateViewController(identifier: TamagotchiDetailViewController.identifier) as! TamagotchiDetailViewController
         let row = indexPath.row
         let nav = UINavigationController(rootViewController: vc)
-        vc.index = row
-        vc.getData(data: TamagotchiInfo().tamagotchi[row])
-        UserDefaults.standard.data(forKey: "Tamagotchi\(row)")
+        TamagotchiInfo.index = row
+        
+        if row > 2 {
+            let alert = UIAlertController(title: "준비중입니다.", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default, handler: okButtonPressed)
+            
+            alert.addAction(ok)
+            present(alert, animated: true)
+        }
+        
+        vc.getData(data: TamagotchiInfo.tamagotchi[row])
         
         nav.modalPresentationStyle = .overFullScreen
         present(nav, animated: true)
+    }
+    
+    func okButtonPressed(_ alert: UIAlertAction) {
+        dismiss(animated: true)
     }
     
     func configureTamagotchiCollectionViewLayout() {

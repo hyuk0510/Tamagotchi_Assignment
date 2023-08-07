@@ -24,7 +24,6 @@
 		D87337862A7EC08F00BE6F6A /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87337842A7EC08F00BE6F6A /* SettingTableViewCell.swift */; };
 		D87337872A7EC08F00BE6F6A /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D87337852A7EC08F00BE6F6A /* SettingTableViewCell.xib */; };
 		D87337892A7F7AF800BE6F6A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87337882A7F7AF800BE6F6A /* SetNameViewController.swift */; };
-		D873378B2A7F932E00BE6F6A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D873378A2A7F932E00BE6F6A /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +46,6 @@
 		D87337842A7EC08F00BE6F6A /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		D87337852A7EC08F00BE6F6A /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		D87337882A7F7AF800BE6F6A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = SOURCE_ROOT; };
-		D873378A2A7F932E00BE6F6A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +84,6 @@
 				D87337742A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift */,
 				D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */,
 				D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */,
-				D873378A2A7F932E00BE6F6A /* UserData.swift */,
 				D87337752A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.xib */,
 				D873375E2A7CA0DA00BE6F6A /* AppDelegate.swift */,
 				D87337602A7CA0DA00BE6F6A /* SceneDelegate.swift */,
@@ -178,7 +175,6 @@
 			files = (
 				D87337732A7CCD8000BE6F6A /* SelectViewController.swift in Sources */,
 				D87337832A7EBC3E00BE6F6A /* SettingViewController.swift in Sources */,
-				D873378B2A7F932E00BE6F6A /* UserData.swift in Sources */,
 				D873377F2A7D135500BE6F6A /* TamagotchiMainViewController.swift in Sources */,
 				D87337762A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift in Sources */,
 				D87337892A7F7AF800BE6F6A /* SetNameViewController.swift in Sources */,
@@ -338,6 +334,7 @@
 				DEVELOPMENT_TEAM = AM9D6522QR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tamagotchi_Assignment/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "선상혁";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -367,6 +364,7 @@
 				DEVELOPMENT_TEAM = AM9D6522QR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tamagotchi_Assignment/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "선상혁";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

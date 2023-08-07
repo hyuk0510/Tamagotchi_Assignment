@@ -11,7 +11,6 @@ class TamagotchiDetailViewController: UIViewController {
 
     var tamagotchiName = ""
     var tamagotchiIntroduce = ""
-    var index = 0
     
     static let identifier = "TamagotchiDetailViewController"
     
@@ -29,13 +28,14 @@ class TamagotchiDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tamagotchiIntroduceTextView.delegate = self
+        
         view.backgroundColor = #colorLiteral(red: 0.1764706075, green: 0.1764706075, blue: 0.1764706075, alpha: 0.5)
         designBackView()
         designNameLabel()
         designIntroduceTextView()
         designCancelButton()
         designStartButton()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +50,6 @@ class TamagotchiDetailViewController: UIViewController {
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "isSelected")
-        TamagotchiInfo.selectedTamagotchi = TamagotchiInfo().tamagotchi[index]
         
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
@@ -58,8 +57,16 @@ class TamagotchiDetailViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: TamagotchiMainViewController.identifier) as! TamagotchiMainViewController
         let nav = UINavigationController(rootViewController: vc)
-        
-        vc.index = index
+                
+        if UserDefaults.standard.bool(forKey: "isChanged") {
+            if let savedData = UserDefaults.standard.object(forKey: "UserTamagotchi\(TamagotchiInfo.index)") as? Data {
+                let decoder = JSONDecoder()
+                
+                if let savedObject = try? decoder.decode(Tamagotchi.self, from: savedData) {
+                    vc.getData(data: savedObject)
+                }
+            }
+        }
         
         sceneDelegate?.window?.rootViewController = nav
         sceneDelegate?.window?.makeKeyAndVisible()
@@ -67,13 +74,14 @@ class TamagotchiDetailViewController: UIViewController {
 }
 
 extension TamagotchiDetailViewController {
+    
     func getData(data: Tamagotchi) {
         tamagotchiName = data.name
         tamagotchiIntroduce = data.introduce
     }
     
     func setData() {
-        let row = index
+        let row = TamagotchiInfo.index
         var imageName = ""
         
         if row > 2 {
@@ -101,21 +109,14 @@ extension TamagotchiDetailViewController {
         tamagotchiNameLabel.layer.borderWidth = 1
     }
     
-    func designIntroduceTextView() {
-        tamagotchiIntroduceTextView.textAlignment = .center
-        tamagotchiIntroduceTextView.font = .boldSystemFont(ofSize: 13)
-        tamagotchiIntroduceTextView.backgroundColor = .clear
-    }
-    
     func designCancelButton() {
         cancelButton.setTitle("취소", for: .normal)
-        cancelButton.titleLabel?.font = UIFont(name: "hi", size: 13)
         cancelButton.backgroundColor = .systemGray5
         cancelButton.layer.masksToBounds = true
         cancelButton.layer.maskedCorners = .layerMinXMaxYCorner
         cancelButton.layer.cornerRadius = 10
     }
-    
+
     func designStartButton() {
         var buttonTitle = ""
         if UserDefaults.standard.bool(forKey: "isChanged") == false {
@@ -123,8 +124,21 @@ extension TamagotchiDetailViewController {
         } else {
             buttonTitle = "변경하기"
         }
+
         startButton.setTitle(buttonTitle, for: .normal)
-        startButton.titleLabel?.font = .boldSystemFont(ofSize: 13)
         startButton.backgroundColor = .clear
+    }
+}
+
+extension TamagotchiDetailViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return false
+    }
+    func designIntroduceTextView() {
+        tamagotchiIntroduceTextView.textAlignment = .center
+        tamagotchiIntroduceTextView.font = .boldSystemFont(ofSize: 13)
+        tamagotchiIntroduceTextView.backgroundColor = .clear
+        tamagotchiIntroduceTextView.tintColor = .clear
     }
 }

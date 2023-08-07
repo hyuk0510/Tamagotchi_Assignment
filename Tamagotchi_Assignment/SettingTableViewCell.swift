@@ -18,9 +18,7 @@ class SettingTableViewCell: UITableViewCell {
         self.tintColor = .black
         self.detailTextLabel?.text = ""
         self.textLabel?.font = .boldSystemFont(ofSize: 13)
+        self.backgroundColor = .clear
     }
-    
-    func configureSettingCell() {
-       
-    }
+   
 }

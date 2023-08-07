@@ -32,6 +32,7 @@ class SettingViewController: UIViewController {
         title = "설정"
         
         setLeftBarButton()
+        setBackgroundColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +42,11 @@ class SettingViewController: UIViewController {
 }
 
 extension SettingViewController {
+    func setBackgroundColor() {
+        self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
+        settingTableView.backgroundColor = .clear
+    }
+    
     func setLeftBarButton() {
         let chevron = UIImage(systemName: "chevron.backward")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: chevron, style: .plain, target: self, action: #selector(backButtonPressed))
@@ -60,7 +66,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Setting.allCases.count
+        return setting.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,8 +76,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.row = row
         cell.textLabel?.text = setting[row].rawValue
-        if cell.textLabel?.text == "내 이름 설정하기" {
+        if row == 0 {
             cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "User")
+        } else {
+            cell.detailTextLabel?.text = ""
         }
         cell.imageView?.image = UIImage(systemName: imageName[row])
         
@@ -107,6 +115,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func okButtonPressed(_ alert: UIAlertAction) {
         UserDefaults.standard.set(false, forKey: "isSelected")
+        UserDefaults.standard.set(false, forKey: "isChanged")
+        UserDefaults.standard.set("대장", forKey: "User")
+        
+        for i in 0..<TamagotchiInfo.tamagotchi.count {
+            UserDefaults.standard.setValue(nil, forKey: "UserTamagotchi\(i)")
+        }
         
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate

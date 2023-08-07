@@ -18,6 +18,7 @@ class SetNameViewController: UIViewController {
 
         title = "대장님 이름 정하기"
         
+        setBackgroundColor()
         designLeftBarButton()
         designRightBarButton()
         designNameTextField()
@@ -25,6 +26,9 @@ class SetNameViewController: UIViewController {
 }
 
 extension SetNameViewController {
+    func setBackgroundColor() {
+        self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
+    }
 
     func designNameTextField() {
         nameTextField.placeholder = "대장님 이름을 알려주세요!"
