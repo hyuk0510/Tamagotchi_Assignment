@@ -85,19 +85,19 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-64-FDc">
-                                        <rect key="frame" x="80" y="20" width="154" height="154"/>
+                                        <rect key="frame" x="80" y="80" width="154" height="154"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KzR-64-FDc" secondAttribute="height" multiplier="1:1" id="6Bg-Jz-hXH"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaK-oj-lFn">
-                                        <rect key="frame" x="80" y="174" width="154" height="21"/>
+                                        <rect key="frame" x="80" y="234" width="154" height="18.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1OC-Un-hY0">
-                                        <rect key="frame" x="20" y="244.99999999999997" width="274" height="57.666666666666657"/>
+                                        <rect key="frame" x="30" y="302.66666666666669" width="254" height="0.0"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -109,7 +109,7 @@
                                 <constraints>
                                     <constraint firstItem="6yo-DL-g6V" firstAttribute="leading" secondItem="RV1-rz-4Z7" secondAttribute="trailing" id="5ca-E0-iPL"/>
                                     <constraint firstItem="RV1-rz-4Z7" firstAttribute="top" secondItem="6yo-DL-g6V" secondAttribute="top" id="AgC-6g-ukR"/>
-                                    <constraint firstItem="KzR-64-FDc" firstAttribute="top" secondItem="Xi3-Tq-Kg7" secondAttribute="top" constant="20" id="Al9-Wj-bNn"/>
+                                    <constraint firstItem="KzR-64-FDc" firstAttribute="top" secondItem="Xi3-Tq-Kg7" secondAttribute="top" constant="80" id="Al9-Wj-bNn"/>
                                     <constraint firstAttribute="trailing" secondItem="KzR-64-FDc" secondAttribute="trailing" constant="80" id="Dql-Qj-7uA"/>
                                     <constraint firstItem="RV1-rz-4Z7" firstAttribute="width" secondItem="6yo-DL-g6V" secondAttribute="width" id="LAf-2I-HQ2"/>
                                     <constraint firstItem="vaK-oj-lFn" firstAttribute="leading" secondItem="KzR-64-FDc" secondAttribute="leading" id="Lao-oD-uRP"/>
@@ -120,8 +120,8 @@
                                     <constraint firstItem="vaK-oj-lFn" firstAttribute="top" secondItem="KzR-64-FDc" secondAttribute="bottom" id="cWX-EK-jU1"/>
                                     <constraint firstItem="RV1-rz-4Z7" firstAttribute="leading" secondItem="Xi3-Tq-Kg7" secondAttribute="leading" id="gk4-KP-aJ0"/>
                                     <constraint firstItem="vaK-oj-lFn" firstAttribute="trailing" secondItem="KzR-64-FDc" secondAttribute="trailing" id="j3i-zp-C5q"/>
-                                    <constraint firstAttribute="trailing" secondItem="1OC-Un-hY0" secondAttribute="trailing" constant="20" id="kG5-sO-gQh"/>
-                                    <constraint firstItem="1OC-Un-hY0" firstAttribute="leading" secondItem="Xi3-Tq-Kg7" secondAttribute="leading" constant="20" id="mTw-U8-WY3"/>
+                                    <constraint firstAttribute="trailing" secondItem="1OC-Un-hY0" secondAttribute="trailing" constant="30" id="kG5-sO-gQh"/>
+                                    <constraint firstItem="1OC-Un-hY0" firstAttribute="leading" secondItem="Xi3-Tq-Kg7" secondAttribute="leading" constant="30" id="mTw-U8-WY3"/>
                                     <constraint firstAttribute="trailing" secondItem="6yo-DL-g6V" secondAttribute="trailing" id="oqE-IB-9oG"/>
                                     <constraint firstItem="KzR-64-FDc" firstAttribute="leading" secondItem="Xi3-Tq-Kg7" secondAttribute="leading" constant="80" id="xmK-sX-rfF"/>
                                 </constraints>

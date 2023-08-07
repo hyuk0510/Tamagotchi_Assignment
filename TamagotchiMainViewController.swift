@@ -160,7 +160,7 @@ extension TamagotchiMainViewController {
     
     func setTamagotchiWordLabel() {
         let user = UserDefaults.standard.string(forKey: "User")!
-        let TamagotchiWord = ["\(user)님 배고파요.. 밥주세요..", "\(user)님 목말라요.. 물주세요..", "\(user)님 안녕하세요~!"]
+        let TamagotchiWord = ["\(user)님 배고파요.. 밥주세요..", "\(user)님 목말라요.. 물주세요..", "\(user)님 안녕하세요~!", "\(user)님 졸지 마세요!", "\(user)님 과제 하세요!"]
         tamagotchiWordLabel.text = TamagotchiWord.randomElement()
     }
     
