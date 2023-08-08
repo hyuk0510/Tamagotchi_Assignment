@@ -77,7 +77,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.row = row
         cell.textLabel?.text = setting[row].rawValue
         if row == 0 {
-            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "User")
+            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "User") ?? "대장"
         } else {
             cell.detailTextLabel?.text = ""
         }

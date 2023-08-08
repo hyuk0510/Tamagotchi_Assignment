@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isSelected = UserDefaults.standard.bool(forKey: "isSelected")
         
         if isSelected == false {
-            UserDefaults.standard.set("대장", forKey: "User")
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(identifier: SelectViewController.identifier) as! SelectViewController
             let nav = UINavigationController(rootViewController: vc)

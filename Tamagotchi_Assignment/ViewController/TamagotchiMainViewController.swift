@@ -54,7 +54,7 @@ class TamagotchiMainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        title = "\(UserDefaults.standard.string(forKey: "User")!)님의 다마고치"
+        title = "\(UserDefaults.standard.string(forKey: "User") ?? "대장")님의 다마고치"
         setTamagotchiWordLabel()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -129,7 +129,7 @@ extension TamagotchiMainViewController {
     }
     
     func setTamagotchiWordLabel() {
-        let user = UserDefaults.standard.string(forKey: "User")!
+        let user = UserDefaults.standard.string(forKey: "User") ?? "대장"
         let TamagotchiWord = ["\(user)님 배고파요.. 밥주세요..", "\(user)님 목말라요.. 물주세요..", "\(user)님 안녕하세요~!", "\(user)님 졸지 마세요!", "\(user)님 과제 하세요!"]
         tamagotchiWordLabel.text = TamagotchiWord.randomElement()
     }
@@ -276,6 +276,8 @@ extension TamagotchiMainViewController: UITextFieldDelegate {
             let cancel = UIAlertAction(title: "확인", style: .default)
             
             alert.addAction(cancel)
+            
+            textField.text = nil
             
             present(alert, animated: true)
         }

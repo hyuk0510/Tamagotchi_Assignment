@@ -32,7 +32,7 @@ extension SetNameViewController {
 
     func designNameTextField() {
         nameTextField.placeholder = "대장님 이름을 알려주세요!"
-        nameTextField.text = UserDefaults.standard.string(forKey: "User")
+        nameTextField.text = UserDefaults.standard.string(forKey: "User") ?? "대장"
         nameTextField.clearButtonMode = .whileEditing
     }
     
