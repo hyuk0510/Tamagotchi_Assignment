@@ -263,14 +263,13 @@ extension TamagotchiMainViewController: UITextFieldDelegate {
             return false
         }
         
-        if textField == riceTextField {
-            plusRice()
-            
-        } else if textField == waterTextField {
-            plusWater()
-        }
-        
         if Int(input) != nil {
+            if textField == riceTextField {
+                plusRice()
+                
+            } else if textField == waterTextField {
+                plusWater()
+            }
             textField.resignFirstResponder()
         } else {
             let alert = UIAlertController(title: "숫자만 입력해주세요.", message: nil, preferredStyle: .alert)
