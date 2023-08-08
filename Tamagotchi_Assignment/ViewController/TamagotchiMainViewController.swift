@@ -30,6 +30,9 @@ class TamagotchiMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        riceTextField.delegate = self
+        waterTextField.delegate = self
                 
         saveData()
         setBackgroundColor()
@@ -53,59 +56,26 @@ class TamagotchiMainViewController: UIViewController {
         super.viewWillAppear(true)
         title = "\(UserDefaults.standard.string(forKey: "User")!)님의 다마고치"
         setTamagotchiWordLabel()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @IBAction func riceButtonPressed(_ sender: UIButton) {
-        
-        guard let text = riceTextField.text else {
-            return
-        }
-        
-        let riceInput = Int(text) ?? 1
-        
-        if riceInput < 100 {
-            tamagotchi.rice += riceInput
-        } else {
-            let alert = UIAlertController(title: "한 번에 100개 이상 못먹어요!", message: nil, preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "확인", style: .default)
-            
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
-        }
-
-        saveData()
-        setTamagotchiImageView()
-        setTamagotchiInfoLabel()
-        setTamagotchiWordLabel()
-        
-        riceTextField.text = nil
+        plusRice()
     }
     
     @IBAction func waterButtonPressed(_ sender: UIButton) {
-        guard let text = waterTextField.text else {
-            return
-        }
-        
-        let waterInput = Int(text) ?? 1
-        
-        if waterInput < 50 {
-            tamagotchi.water += waterInput
-        } else {
-            let alert = UIAlertController(title: "한 번에 50개 이상 못마셔요!", message: nil, preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "확인", style: .default)
-            
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
-        }
-        
-        saveData()
-        setTamagotchiImageView()
-        setTamagotchiInfoLabel()
-        setTamagotchiWordLabel()
-        
-        waterTextField.text = nil
+        plusWater()
     }
     
     @IBAction func barButtonItemPressed(_ sender: UIBarButtonItem) {
@@ -181,8 +151,7 @@ extension TamagotchiMainViewController {
     func designRiceTextField() {
         riceTextField.placeholder = "밥주세용"
         riceTextField.textAlignment = .center
-        riceTextField.clearButtonMode = .whileEditing
-        riceTextField.clearsOnBeginEditing = true
+        riceTextField.clearsOnBeginEditing = false
     }
     
     func designRiceButton() {
@@ -197,8 +166,7 @@ extension TamagotchiMainViewController {
     func designWaterTextField() {
         waterTextField.placeholder = "물주세용"
         waterTextField.textAlignment = .center
-        waterTextField.clearButtonMode = .whileEditing
-        waterTextField.clearsOnBeginEditing = true
+        waterTextField.clearsOnBeginEditing = false
     }
     
     func designWaterButton() {
@@ -216,5 +184,103 @@ extension TamagotchiMainViewController {
         if let encoded = try? encoder.encode(tamagotchi) {
             UserDefaults.standard.setValue(encoded, forKey: "UserTamagotchi\(TamagotchiInfo.index)")
         }
+    }
+    
+    func plusRice() {
+        guard let text = riceTextField.text else {
+            return
+        }
+        
+        let riceInput = Int(text) ?? 1
+        
+        if riceInput < 100 {
+            tamagotchi.rice += riceInput
+        } else {
+            let alert = UIAlertController(title: "한 번에 100개 이상 못먹어요!", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
+
+        saveData()
+        setTamagotchiImageView()
+        setTamagotchiInfoLabel()
+        setTamagotchiWordLabel()
+        
+        riceTextField.text = nil
+
+    }
+    
+    func plusWater() {
+        guard let text = waterTextField.text else {
+            return
+        }
+        
+        let waterInput = Int(text) ?? 1
+        
+        if waterInput < 50 {
+            tamagotchi.water += waterInput
+        } else {
+            let alert = UIAlertController(title: "한 번에 50개 이상 못마셔요!", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
+        
+        saveData()
+        setTamagotchiImageView()
+        setTamagotchiInfoLabel()
+        setTamagotchiWordLabel()
+        
+        waterTextField.text = nil
+    }
+    
+    @objc func keyboardUp(notification: NSNotification) {
+        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+               let keyboardRectangle = keyboardFrame.cgRectValue
+           
+                UIView.animate(
+                    withDuration: 0.3
+                    , animations: {
+                        self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+                    }
+                )
+            }
+    }
+    
+    @objc func keyboardDown() {
+        self.view.transform = .identity
+    }
+}
+
+extension TamagotchiMainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let input = textField.text else {
+            return false
+        }
+        
+        if textField == riceTextField {
+            plusRice()
+            
+        } else if textField == waterTextField {
+            plusWater()
+        }
+        
+        if Int(input) != nil {
+            textField.resignFirstResponder()
+        } else {
+            let alert = UIAlertController(title: "숫자만 입력해주세요.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
+        
+        return true
     }
 }
