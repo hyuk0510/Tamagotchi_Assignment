@@ -71,11 +71,35 @@ class TamagotchiMainViewController: UIViewController {
     }
     
     @IBAction func riceButtonPressed(_ sender: UIButton) {
-        plusRice()
+        guard let input = riceTextField.text else {
+            return
+        }
+        if Int(input) != nil {
+            plusRice()
+        } else {
+            let alert = UIAlertController(title: "잘못된 입력입니다.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func waterButtonPressed(_ sender: UIButton) {
-        plusWater()
+        guard let input = waterTextField.text else {
+            return
+        }
+        if Int(input) != nil {
+            plusWater()
+        } else {
+            let alert = UIAlertController(title: "잘못된 입력입니다.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func barButtonItemPressed(_ sender: UIBarButtonItem) {

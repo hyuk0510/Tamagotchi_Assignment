@@ -76,11 +76,10 @@
 		D873375D2A7CA0DA00BE6F6A /* Tamagotchi_Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				D87337F12A83F07A00BE6F6A /* Data */,
 				D87337C32A80DF4900BE6F6A /* ViewCell */,
 				D87337C22A80DF2E00BE6F6A /* Storyboard */,
 				D87337C12A80DEF100BE6F6A /* ViewController */,
-				D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */,
-				D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */,
 				D873375E2A7CA0DA00BE6F6A /* AppDelegate.swift */,
 				D87337602A7CA0DA00BE6F6A /* SceneDelegate.swift */,
 				D87337672A7CA0DA00BE6F6A /* Assets.xcassets */,
@@ -119,6 +118,15 @@
 				D87337742A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift */,
 			);
 			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		D87337F12A83F07A00BE6F6A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D87337782A7CD4BD00BE6F6A /* Tamagotchi.swift */,
+				D873377A2A7CD5A600BE6F6A /* TamagotchiInfo.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,7 +362,6 @@
 				DEVELOPMENT_TEAM = AM9D6522QR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tamagotchi_Assignment/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "선상혁";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -384,7 +391,6 @@
 				DEVELOPMENT_TEAM = AM9D6522QR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tamagotchi_Assignment/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "선상혁";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

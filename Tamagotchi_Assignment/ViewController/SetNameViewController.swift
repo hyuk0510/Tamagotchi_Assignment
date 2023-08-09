@@ -57,7 +57,23 @@ extension SetNameViewController {
         guard let text = nameTextField.text else {
             return
         }
-        UserDefaults.standard.set(text, forKey: "User")
-        navigationController?.popViewController(animated: true)
+        if text.count < 2 || text.count > 6 {
+            let alert = UIAlertController(title: "잘못된 입력입니다", message: "2글자 이상 6글자 이하 입력해주세요", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        } else if text.hasPrefix(" ") {
+            let alert = UIAlertController(title: "잘못된 입력입니다", message: "첫 글자 공백 입력이 불가능합니다", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        } else {
+            UserDefaults.standard.set(text, forKey: "User")
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
