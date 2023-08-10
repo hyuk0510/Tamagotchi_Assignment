@@ -59,7 +59,6 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let vc = storyboard?.instantiateViewController(identifier: TamagotchiDetailViewController.identifier) as! TamagotchiDetailViewController
         let row = indexPath.row
         let nav = UINavigationController(rootViewController: vc)
-        TamagotchiInfo.index = row
         
         if row > 2 {
             let alert = UIAlertController(title: "준비중입니다.", message: nil, preferredStyle: .alert)
@@ -69,6 +68,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
             present(alert, animated: true)
         }
         
+        vc.row = row
         vc.getData(data: TamagotchiInfo.tamagotchi[row])
         
         nav.modalPresentationStyle = .overFullScreen

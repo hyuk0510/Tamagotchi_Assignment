@@ -10,7 +10,8 @@ import UIKit
 class TamagotchiMainViewController: UIViewController {
 
     static let identifier = "TamagotchiMainViewController"
-    var tamagotchi = TamagotchiInfo.tamagotchi[TamagotchiInfo.index]
+    var index = UserDefaults.standard.integer(forKey: "TamagotchiIndex")
+    var tamagotchi = TamagotchiInfo.tamagotchi[UserDefaults.standard.integer(forKey: "TamagotchiIndex")]
     
     @IBOutlet var barButtonItem: UIBarButtonItem!
     
@@ -33,7 +34,8 @@ class TamagotchiMainViewController: UIViewController {
         
         riceTextField.delegate = self
         waterTextField.delegate = self
-                
+        
+        checkIsSelected()
         saveData()
         setBackgroundColor()
         designBarButtonItem()
@@ -115,13 +117,24 @@ extension TamagotchiMainViewController {
         tamagotchi = data
     }
     
+    func checkIsSelected() {
+        if UserDefaults.standard.bool(forKey: "isSelected") {
+            if let savedData = UserDefaults.standard.object(forKey: "UserTamagotchi\(index)") as? Data {
+                let decoder = JSONDecoder()
+                
+                if let savedObject = try? decoder.decode(Tamagotchi.self, from: savedData) {
+                    self.getData(data: savedObject)
+                }
+            }
+        }
+    }
+    
     func setBackgroundColor() {
         self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
     }
     
     func setTamagotchiImageView() {
         let level = tamagotchi.level
-        let index = TamagotchiInfo.index
         
         if level == 0 {
             tamagotchiImageView.image = UIImage(named: "\(index + 1)-\(level + 1)")
@@ -206,7 +219,7 @@ extension TamagotchiMainViewController {
         let encoder = JSONEncoder()
 
         if let encoded = try? encoder.encode(tamagotchi) {
-            UserDefaults.standard.setValue(encoded, forKey: "UserTamagotchi\(TamagotchiInfo.index)")
+            UserDefaults.standard.setValue(encoded, forKey: "UserTamagotchi\(index)")
         }
     }
     

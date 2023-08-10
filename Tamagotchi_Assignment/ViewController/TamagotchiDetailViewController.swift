@@ -11,6 +11,8 @@ class TamagotchiDetailViewController: UIViewController {
 
     var tamagotchiName = ""
     var tamagotchiIntroduce = ""
+    var imageName = ""
+    var row = 0
     
     static let identifier = "TamagotchiDetailViewController"
     
@@ -50,6 +52,7 @@ class TamagotchiDetailViewController: UIViewController {
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "isSelected")
+        UserDefaults.standard.set(row, forKey: "TamagotchiIndex")
         
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
@@ -57,15 +60,18 @@ class TamagotchiDetailViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: TamagotchiMainViewController.identifier) as! TamagotchiMainViewController
         let nav = UINavigationController(rootViewController: vc)
-                
+        let index = UserDefaults.standard.integer(forKey: "TamagotchiIndex")
+//        vc.index = row
         if UserDefaults.standard.bool(forKey: "isChanged") {
-            if let savedData = UserDefaults.standard.object(forKey: "UserTamagotchi\(TamagotchiInfo.index)") as? Data {
+            if let savedData = UserDefaults.standard.object(forKey: "UserTamagotchi\(row)") as? Data {
                 let decoder = JSONDecoder()
                 
                 if let savedObject = try? decoder.decode(Tamagotchi.self, from: savedData) {
                     vc.getData(data: savedObject)
                 }
             }
+        } else {
+            
         }
         
         sceneDelegate?.window?.rootViewController = nav
@@ -76,19 +82,18 @@ class TamagotchiDetailViewController: UIViewController {
 extension TamagotchiDetailViewController {
     
     func getData(data: Tamagotchi) {
+
         tamagotchiName = data.name
         tamagotchiIntroduce = data.introduce
-    }
-    
-    func setData() {
-        let row = TamagotchiInfo.index
-        var imageName = ""
         
         if row > 2 {
             imageName = "noImage"
         } else {
             imageName = "\(row + 1)-6"
         }
+    }
+    
+    func setData() {
         
         tamagotchiDetailImageView.image = UIImage(named: imageName)
         tamagotchiDetailImageView.contentMode = .scaleAspectFit
