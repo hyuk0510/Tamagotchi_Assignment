@@ -43,3 +43,5 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
+//check
