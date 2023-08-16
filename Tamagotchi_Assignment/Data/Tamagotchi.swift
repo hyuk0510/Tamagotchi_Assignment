@@ -12,7 +12,7 @@ struct Tamagotchi: Codable {
     var rice: Int
     var water: Int
     var level: Int {
-        let level = Int((rice / 5 + water / 2) / 10)
+        let level = Int((Double(rice / 5) + Double(water / 2)) / 10)
         if level == 0 {
             return 1
         } else if level > 10 {

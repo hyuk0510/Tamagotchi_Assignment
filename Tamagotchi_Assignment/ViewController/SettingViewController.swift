@@ -7,15 +7,14 @@
 
 import UIKit
 
-enum Setting: String, CaseIterable {
-    case setMyName = "내 이름 설정하기"
-    case changeTamagotchi = "다마고치 변경하기"
-    case resetData = "데이터 초기화"
-}
-
 class SettingViewController: UIViewController {
 
-    static let identifier = "SettingViewController"
+    enum Setting: String, CaseIterable {
+        case setMyName = "내 이름 설정하기"
+        case changeTamagotchi = "다마고치 변경하기"
+        case resetData = "데이터 초기화"
+    }
+    
     let imageName = ["pencil", "moon.fill", "arrow.clockwise"]
     let setting = Setting.allCases
     
@@ -56,6 +55,30 @@ extension SettingViewController {
     func backButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
+    
+    func showAlert(row: Int) {
+        switch setting[row] {
+        case .setMyName:
+            let vc = storyboard?.instantiateViewController(identifier: SetNameViewController.identifier) as! SetNameViewController
+            
+            navigationController?.pushViewController(vc, animated: true)
+        case .changeTamagotchi:
+            let vc = storyboard?.instantiateViewController(identifier: SelectViewController.identifier) as! SelectViewController
+            
+            UserDefaults.standard.set(true, forKey: "isChanged")
+            
+            navigationController?.pushViewController(vc, animated: true)
+        case .resetData:
+            let alert = UIAlertController(title: "데이터 초기화", message: "정말 초기화 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "아니요", style: .cancel)
+            let ok = UIAlertAction(title: "네", style: .default, handler: okButtonPressed)
+            
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            
+            present(alert, animated: true)
+        }
+    }
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -90,27 +113,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let row = indexPath.row
         
-        switch setting[row] {
-        case .setMyName:
-            let vc = storyboard?.instantiateViewController(identifier: SetNameViewController.identifier) as! SetNameViewController
-            
-            navigationController?.pushViewController(vc, animated: true)
-        case .changeTamagotchi:
-            let vc = storyboard?.instantiateViewController(identifier: SelectViewController.identifier) as! SelectViewController
-            
-            UserDefaults.standard.set(true, forKey: "isChanged")
-            
-            navigationController?.pushViewController(vc, animated: true)
-        case .resetData:
-            let alert = UIAlertController(title: "데이터 초기화", message: "정말 초기화 하시겠습니까?", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "아니요", style: .cancel)
-            let ok = UIAlertAction(title: "네", style: .default, handler: okButtonPressed)
-            
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            
-            present(alert, animated: true)
-        }
+        showAlert(row: row)
     }
     
     func okButtonPressed(_ alert: UIAlertAction) {

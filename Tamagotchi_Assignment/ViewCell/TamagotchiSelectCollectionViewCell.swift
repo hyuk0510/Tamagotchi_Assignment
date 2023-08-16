@@ -13,8 +13,6 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var tamagotchiNameLabel: UILabel!
     
-    static let identifier = "TamagotchiSelectCollectionViewCell"
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,15 +31,12 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
         tamagotchiSelectImageView.contentMode = .scaleAspectFit
     }
     
-    func configureTamagotchiSelectCollectionViewCell() {
-        let row = tamagotchiSelectImageView.tag
+    func configureTamagotchiSelectCollectionViewCell(row: Int, count: Int) {
         tamagotchiNameLabel.text = TamagotchiInfo.tamagotchi[row].name
-        if TamagotchiInfo.tamagotchi[row].name == "준비중이에요" {
+        if row > count {
             tamagotchiSelectImageView.image = UIImage(named: "noImage")
         } else {
             tamagotchiSelectImageView.image = UIImage(named: "\(row + 1)-6")
         }
     }
 }
-
-//check

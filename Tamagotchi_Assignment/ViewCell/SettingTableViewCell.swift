@@ -9,7 +9,6 @@ import UIKit
 
 class SettingTableViewCell: UITableViewCell {
 
-    static let identifier = "SettingTableViewCell"
     var row = 0
     
     override func awakeFromNib() {

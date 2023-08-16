@@ -13,9 +13,7 @@ class TamagotchiDetailViewController: UIViewController {
     var tamagotchiIntroduce = ""
     var imageName = ""
     var row = 0
-    
-    static let identifier = "TamagotchiDetailViewController"
-    
+        
     @IBOutlet var backView: UIView!
     
     @IBOutlet var tamagotchiDetailImageView: UIImageView!

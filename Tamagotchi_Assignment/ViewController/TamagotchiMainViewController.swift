@@ -9,7 +9,6 @@ import UIKit
 
 class TamagotchiMainViewController: UIViewController {
 
-    static let identifier = "TamagotchiMainViewController"
     var index = UserDefaults.standard.integer(forKey: "TamagotchiIndex")
     var tamagotchi = TamagotchiInfo.tamagotchi[UserDefaults.standard.integer(forKey: "TamagotchiIndex")]
     

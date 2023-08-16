@@ -11,11 +11,13 @@ class SelectViewController: UIViewController {
     
     @IBOutlet var tamagotchiSelectCollectionView: UICollectionView!
     
-    static let identifier = "SelectViewController"
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        count = TamagotchiInfo.tamagotchi.count - 1
+        
         for _ in 1...20 {
             TamagotchiInfo.tamagotchi.append(Tamagotchi(name: "준비중이에요", rice: 0, water: 0, introduce: "준비중입니다."))
         }
@@ -36,6 +38,16 @@ class SelectViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
         tamagotchiSelectCollectionView.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
     }
+    
+    func showAlert(row: Int) {
+        if row > 2 {
+            let alert = UIAlertController(title: "준비중입니다.", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default, handler: okButtonPressed)
+            
+            alert.addAction(ok)
+            present(alert, animated: true)
+        }
+    }
 }
 
 extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -48,8 +60,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TamagotchiSelectCollectionViewCell.identifier, for: indexPath) as! TamagotchiSelectCollectionViewCell
         let row = indexPath.row
         
-        cell.tamagotchiSelectImageView.tag = row
-        cell.configureTamagotchiSelectCollectionViewCell()
+        cell.configureTamagotchiSelectCollectionViewCell(row: row, count: count)
         
         return cell
     }
@@ -60,13 +71,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let row = indexPath.row
         let nav = UINavigationController(rootViewController: vc)
         
-        if row > 2 {
-            let alert = UIAlertController(title: "준비중입니다.", message: nil, preferredStyle: .alert)
-            let ok = UIAlertAction(title: "확인", style: .default, handler: okButtonPressed)
-            
-            alert.addAction(ok)
-            present(alert, animated: true)
-        }
+        showAlert(row: row)
         
         vc.row = row
         vc.getData(data: TamagotchiInfo.tamagotchi[row])

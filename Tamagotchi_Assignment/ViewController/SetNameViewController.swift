@@ -11,8 +11,6 @@ class SetNameViewController: UIViewController {
     
     @IBOutlet var nameTextField: UITextField!
     
-    static let identifier = "SetNameViewController"
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

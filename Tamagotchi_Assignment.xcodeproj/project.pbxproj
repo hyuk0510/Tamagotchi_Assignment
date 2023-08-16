@@ -23,6 +23,7 @@
 		D87337862A7EC08F00BE6F6A /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87337842A7EC08F00BE6F6A /* SettingTableViewCell.swift */; };
 		D87337872A7EC08F00BE6F6A /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D87337852A7EC08F00BE6F6A /* SettingTableViewCell.xib */; };
 		D87337892A7F7AF800BE6F6A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87337882A7F7AF800BE6F6A /* SetNameViewController.swift */; };
+		D8A5D01C2A8CABDD008329BE /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A5D01B2A8CABDD008329BE /* ReusableViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D87337842A7EC08F00BE6F6A /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		D87337852A7EC08F00BE6F6A /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		D87337882A7F7AF800BE6F6A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetNameViewController.swift; path = Tamagotchi_Assignment/ViewController/SetNameViewController.swift; sourceTree = SOURCE_ROOT; };
+		D8A5D01B2A8CABDD008329BE /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				D87337602A7CA0DA00BE6F6A /* SceneDelegate.swift */,
 				D87337672A7CA0DA00BE6F6A /* Assets.xcassets */,
 				D873376C2A7CA0DA00BE6F6A /* Info.plist */,
+				D8A5D01B2A8CABDD008329BE /* ReusableViewProtocol.swift */,
 			);
 			path = Tamagotchi_Assignment;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				D873377F2A7D135500BE6F6A /* TamagotchiMainViewController.swift in Sources */,
 				D87337762A7CD29200BE6F6A /* TamagotchiSelectCollectionViewCell.swift in Sources */,
 				D87337892A7F7AF800BE6F6A /* SetNameViewController.swift in Sources */,
+				D8A5D01C2A8CABDD008329BE /* ReusableViewProtocol.swift in Sources */,
 				D873377D2A7CE6AF00BE6F6A /* TamagotchiDetailViewController.swift in Sources */,
 				D87337862A7EC08F00BE6F6A /* SettingTableViewCell.swift in Sources */,
 				D873377B2A7CD5A600BE6F6A /* TamagotchiInfo.swift in Sources */,
