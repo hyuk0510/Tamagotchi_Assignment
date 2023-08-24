@@ -25,6 +25,8 @@ class TamagotchiSelectCollectionViewCell: UICollectionViewCell {
         tamagotchiNameLabel.layer.cornerRadius = 5
         tamagotchiNameLabel.textAlignment = .center
         tamagotchiNameLabel.layer.borderWidth = 1
+        configureBorder(view: tamagotchiNameLabel)
+        configureText(label: tamagotchiNameLabel)
     }
     
     func designTamagotchiSelectImageView() {

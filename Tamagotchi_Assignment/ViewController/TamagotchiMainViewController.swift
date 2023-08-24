@@ -38,7 +38,7 @@ class TamagotchiMainViewController: UIViewController {
         
         riceTextField.delegate = self
         waterTextField.delegate = self
-        
+                
         checkIsSelected()
         saveData()
         setBackgroundColor()
@@ -163,8 +163,7 @@ extension TamagotchiMainViewController {
     }
     
     func designTamagotchiWordLabel() {
-        tamagotchiWordLabel.font = .boldSystemFont(ofSize: 13)
-        tamagotchiWordLabel.textAlignment = .center
+        configureText(label: tamagotchiWordLabel)
     }
     
     func setTamagotchiWordLabel() {
@@ -177,13 +176,11 @@ extension TamagotchiMainViewController {
         tamagotchiNameLabel.textAlignment = .center
         tamagotchiNameLabel.font = .boldSystemFont(ofSize: 15)
         tamagotchiNameLabel.text = tamagotchi.name
-        tamagotchiNameLabel.layer.cornerRadius = 5
-        tamagotchiNameLabel.layer.borderWidth = 0.5
+        configureBorder(view: tamagotchiNameLabel)
     }
     
     func designTamagotchiInfoLabel() {
-        tamagotchiInfoLabel.textAlignment = .center
-        tamagotchiInfoLabel.font = .boldSystemFont(ofSize: 13)
+        configureText(label: tamagotchiInfoLabel)
         setTamagotchiInfoLabel()
     }
     

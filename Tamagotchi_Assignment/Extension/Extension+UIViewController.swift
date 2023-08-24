@@ -35,4 +35,30 @@ extension UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+
+    func configureBorder<T: UIView>(view: T) {
+        view.layer.cornerRadius = 5
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 0.5
+    }
+
+    func configureText<T: UILabel>(label: T) {
+        
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 13)
+    }
+}
+
+extension UIView {
+    func configureBorder<T: UIView>(view: T) {
+        view.layer.cornerRadius = 5
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 0.5
+    }
+
+    func configureText<T: UILabel>(label: T) {
+        
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 13)
+    }
 }

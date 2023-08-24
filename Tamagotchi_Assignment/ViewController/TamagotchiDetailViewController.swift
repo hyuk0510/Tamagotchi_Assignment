@@ -131,6 +131,13 @@ extension TamagotchiDetailViewController {
         startButton.setTitle(buttonTitle, for: .normal)
         startButton.backgroundColor = .clear
     }
+    
+    func designIntroduceTextView() {
+        tamagotchiIntroduceTextView.textAlignment = .center
+        tamagotchiIntroduceTextView.font = .boldSystemFont(ofSize: 13)
+        tamagotchiIntroduceTextView.backgroundColor = .clear
+        tamagotchiIntroduceTextView.tintColor = .clear
+    }
 }
 
 extension TamagotchiDetailViewController: UITextViewDelegate {
@@ -138,10 +145,5 @@ extension TamagotchiDetailViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return false
     }
-    func designIntroduceTextView() {
-        tamagotchiIntroduceTextView.textAlignment = .center
-        tamagotchiIntroduceTextView.font = .boldSystemFont(ofSize: 13)
-        tamagotchiIntroduceTextView.backgroundColor = .clear
-        tamagotchiIntroduceTextView.tintColor = .clear
-    }
+    
 }
