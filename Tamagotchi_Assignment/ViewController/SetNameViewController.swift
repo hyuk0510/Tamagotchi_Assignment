@@ -9,6 +9,11 @@ import UIKit
 
 class SetNameViewController: UIViewController {
     
+    enum NameError: Error {
+        case isNotValidateLength
+        case isNotValidateInput
+    }
+    
     @IBOutlet var nameTextField: UITextField!
     
     override func viewDidLoad() {
@@ -55,23 +60,43 @@ extension SetNameViewController {
         guard let text = nameTextField.text else {
             return
         }
-        if text.count < 2 || text.count > 6 {
-            let alert = UIAlertController(title: "잘못된 입력입니다", message: "2글자 이상 6글자 이하 입력해주세요", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "확인", style: .default)
-            
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
-        } else if text.hasPrefix(" ") {
-            let alert = UIAlertController(title: "잘못된 입력입니다", message: "첫 글자 공백 입력이 불가능합니다", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "확인", style: .default)
-            
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
-        } else {
-            UserDefaults.standard.set(text, forKey: "User")
-            navigationController?.popViewController(animated: true)
+        
+        do {
+            let _ = try validationUserInputError(text: text)
+        } catch {
+            switch error {
+            case NameError.isNotValidateLength:
+                showAlert(message: "2글자 이상 6글자 이하 입력해주세요")
+
+            case NameError.isNotValidateInput: showAlert(message: "첫 글자 공백 입력은 불가능합니다.")
+                
+            default: showAlert(message: "알 수 없는 오류입니다.")
+            }
         }
+        
+        UserDefaults.standard.set(text, forKey: "User")
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func validationUserInputError(text: String) throws -> Bool {
+        
+        guard !text.hasPrefix(" ") else {
+            throw NameError.isNotValidateInput
+        }
+        
+        guard text.count >= 2 && text.count <= 6 else {
+            throw NameError.isNotValidateLength
+        }
+        
+        return true
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "잘못된 입력입니다", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
 }

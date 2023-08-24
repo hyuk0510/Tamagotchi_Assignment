@@ -9,6 +9,11 @@ import UIKit
 
 class TamagotchiMainViewController: UIViewController {
 
+    enum ValidationError: Error {
+        case isNotInt
+        case isNotValidateRange
+    }
+    
     var index = UserDefaults.standard.integer(forKey: "TamagotchiIndex")
     var tamagotchi = TamagotchiInfo.tamagotchi[UserDefaults.standard.integer(forKey: "TamagotchiIndex")]
     
@@ -104,9 +109,7 @@ class TamagotchiMainViewController: UIViewController {
     }
     
     @IBAction func barButtonItemPressed(_ sender: UIBarButtonItem) {
-        let vc = storyboard?.instantiateViewController(identifier: SettingViewController.identifier) as! SettingViewController
-        
-        navigationController?.pushViewController(vc, animated: true)
+        transition(viewController: SettingViewController.self, storyboard: "Main", style: .push)
     }
     
 }
@@ -195,8 +198,6 @@ extension TamagotchiMainViewController {
         
         riceButton.setImage(riceButtonImage, for: .normal)
         riceButton.setTitle("밥먹기", for: .normal)
-        riceButton.layer.borderWidth = 0.5
-        riceButton.layer.cornerRadius = 15
     }
     
     func designWaterTextField() {
@@ -210,8 +211,6 @@ extension TamagotchiMainViewController {
         
         waterButton.setImage(waterButtonImage, for: .normal)
         waterButton.setTitle("물먹기", for: .normal)
-        waterButton.layer.borderWidth = 0.5
-        waterButton.layer.cornerRadius = 15
     }
     
     func saveData() {
@@ -220,6 +219,14 @@ extension TamagotchiMainViewController {
         if let encoded = try? encoder.encode(tamagotchi) {
             UserDefaults.standard.setValue(encoded, forKey: "UserTamagotchi\(index)")
         }
+        
+        setTamagotchiImageView()
+        setTamagotchiInfoLabel()
+        setTamagotchiWordLabel()
+    }
+    
+    func showAlert() {
+        
     }
     
     func plusRice() {
@@ -227,7 +234,18 @@ extension TamagotchiMainViewController {
             return
         }
         
-        let riceInput = Int(text) ?? 1
+        do {
+            let _ = try validateUserInputError(text: text, sender: riceTextField)
+        } catch {
+            switch error {
+            case ValidationError.isNotInt: break
+            case ValidationError.isNotValidateRange: break
+            default:
+                return
+            }
+        }
+        
+        let riceInput = Int(text) ?? 0
         
         if riceInput < 100 {
             tamagotchi.rice += riceInput
@@ -241,9 +259,6 @@ extension TamagotchiMainViewController {
         }
 
         saveData()
-        setTamagotchiImageView()
-        setTamagotchiInfoLabel()
-        setTamagotchiWordLabel()
         
         riceTextField.text = nil
 
@@ -254,7 +269,7 @@ extension TamagotchiMainViewController {
             return
         }
         
-        let waterInput = Int(text) ?? 1
+        let waterInput = Int(text) ?? 0
         
         if waterInput < 50 {
             tamagotchi.water += waterInput
@@ -268,9 +283,6 @@ extension TamagotchiMainViewController {
         }
         
         saveData()
-        setTamagotchiImageView()
-        setTamagotchiInfoLabel()
-        setTamagotchiWordLabel()
         
         waterTextField.text = nil
     }
@@ -290,6 +302,24 @@ extension TamagotchiMainViewController {
     
     @objc func keyboardDown() {
         self.view.transform = .identity
+    }
+    
+    func validateUserInputError(text: String, sender: UITextField) throws -> Bool {
+        guard Int(text) != nil else {
+            throw ValidationError.isNotInt
+        }
+        
+        if sender == riceTextField {
+            guard 1..<100 ~= Int(text) ?? 0 else {
+                throw ValidationError.isNotValidateRange
+            }
+        } else {
+            guard 1..<50 ~= Int(text) ?? 0 else {
+                throw ValidationError.isNotValidateRange
+            }
+        }
+            
+        return true
     }
 }
 

@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIButton.appearance().tintColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
         UIBarButtonItem.appearance().tintColor = .black
         
+        UNUserNotificationCenter.current().delegate = self
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
+            print(success, error)
+        }
+        
         return true
     }
 
@@ -38,3 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.sound, .badge, .banner, .list])
+    }
+    
+}

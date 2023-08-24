@@ -59,7 +59,7 @@ class TamagotchiDetailViewController: UIViewController {
         let vc = sb.instantiateViewController(identifier: TamagotchiMainViewController.identifier) as! TamagotchiMainViewController
         let nav = UINavigationController(rootViewController: vc)
         let index = UserDefaults.standard.integer(forKey: "TamagotchiIndex")
-//        vc.index = row
+
         if UserDefaults.standard.bool(forKey: "isChanged") {
             if let savedData = UserDefaults.standard.object(forKey: "UserTamagotchi\(row)") as? Data {
                 let decoder = JSONDecoder()
