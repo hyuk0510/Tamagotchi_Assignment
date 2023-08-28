@@ -32,11 +32,18 @@ class SettingViewController: UIViewController {
         
         setLeftBarButton()
         setBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(userNameNotificationObserver(notification:)), name: Notification.Name("UserName"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         settingTableView.reloadData()
+    }
+    
+    @objc func userNameNotificationObserver(notification: Notification) {
+        if let userName = notification.userInfo?["UserName"] as? String {
+            UserDefaults.standard.set(userName, forKey: "User")
+        }
     }
 }
 
@@ -100,7 +107,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.row = row
         cell.textLabel?.text = setting[row].rawValue
         if row == 0 {
-            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "User") ?? "대장"
+            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "User")
         } else {
             cell.detailTextLabel?.text = ""
         }

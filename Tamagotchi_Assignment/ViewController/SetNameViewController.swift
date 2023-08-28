@@ -74,7 +74,7 @@ extension SetNameViewController {
             }
         }
         
-        UserDefaults.standard.set(text, forKey: "User")
+        NotificationCenter.default.post(name: Notification.Name("UserName"), object: nil, userInfo: ["UserName": text])
         navigationController?.popViewController(animated: true)
     }
     
